@@ -9,18 +9,26 @@ public class GameUI : UIBase {
 
     public Text scoreHud;
 
+    public void IniUI() {
+        SetScore(0);
+        scoreHud.gameObject.SetActive(false);
+    }
+
     private void Awake() {
         cg = GetComponent<CanvasGroup>();
         if (scoreText == null) return;
-        SetScore(0);
+        
     }
 
     public void SetScore(float score) {
         scoreText.text = score.ToString();
     }
 
+    public void SetTotalScore(int total) {
+        scoreText.text = total.ToString();
+    }
 
-    public void AddScore(int count) {
+    public void ShowScoreAddHud(int count) {
         scoreHud.text = $"+ {count.ToString()}";
     
         StartCoroutine(AddScoreCoroutine());
@@ -34,12 +42,6 @@ public class GameUI : UIBase {
             yield return null;
         }
         scoreHud.gameObject.SetActive(false);
-    }
-
-    private void OnGUI() {
-     if(GUI.Button(new Rect(100,100,100,100),"adfadf")) {
-            AddScore(Random.Range(10, 30));
-        }
     }
 
 }

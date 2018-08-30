@@ -52,8 +52,18 @@ public class Block : MonoBehaviour {
             time += Time.deltaTime;
             yield return null;
         }
-
         transform.localPosition = target;
+    }
+
+    IEnumerator RatioRecover() {
+        for (int i = 0; i < 30; i++) {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, 0.25f);
+            yield return null;
+        }
+    }
+
+    public void StartRecover() {
+        StartCoroutine(RatioRecover());
     }
 
 }

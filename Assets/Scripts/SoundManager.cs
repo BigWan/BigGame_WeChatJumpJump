@@ -52,22 +52,46 @@ public class SoundManager : UnitySingleton<SoundManager> {
     }
 
     public void OnGameOver() {
-
-
+        Instance.PlayFail();
     }
 
     public void PlayCombine(int combineID) {
 
     }
 
-    public void PlayPerfect() {
-        audioPlayer.clip = perfectSound;
+    public void PlayLanded(int perfectCount) {
+        int clipIndex = 0;
+        if (perfectCount > comboSounds.Length)
+            clipIndex = comboSounds.Length - 1;
+        else
+            clipIndex = perfectCount;
+        audioPlayer.clip = comboSounds[clipIndex];
         audioPlayer.Play();
     }
 
 
+    public void PlaySnapSound() {
+        audioPlayer.clip = pressSound;
+        audioPlayer.Play();
+    }
+
+    public void PlaySnapLoop() {
+        if (audioPlayer.clip != pressLoop) {
+            audioPlayer.clip = pressLoop;
+            audioPlayer.Play();
+            audioPlayer.loop = true;
+        }
+    }
+
+    public void Stop() {
+        audioPlayer.Stop();
+    }
 
 
+    public void PlayFail() {
+        audioPlayer.clip = failSounds[0];
+        audioPlayer.Play();
+    }
 }
 
 

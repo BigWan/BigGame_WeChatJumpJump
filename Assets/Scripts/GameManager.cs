@@ -37,10 +37,11 @@ public class GameManager : UnitySingleton<GameManager> {
     public UnityAction GameStartAction;
     public UnityAction GameOverAction;
 
-
+    public int totalScore;
 
     public void GameReLoad() {
         gameUI.gameObject.SetActive(false);
+        gameUI.IniUI();
         mainUI.gameObject.SetActive(true);
         mainUI.FadeIn();
         gameOverUI.gameObject.SetActive(false);
@@ -52,6 +53,7 @@ public class GameManager : UnitySingleton<GameManager> {
         cf.transform.localPosition = new Vector3(15,15,-8);
         cf.transform.eulerAngles = new Vector3(35, -45);
         gameStat = GameStat.Loaded;
+        totalScore = 0;
     }
 
 
@@ -68,7 +70,7 @@ public class GameManager : UnitySingleton<GameManager> {
         plane.localPosition = Vector3.zero;
     }
 
-    void OnChangeBlock(bool isPerfect) {
+    void OnChangeBlock(int perfectCount) {
         road.SpawnNextBlock();
         
         plane.localPosition = new Vector3(
@@ -76,11 +78,17 @@ public class GameManager : UnitySingleton<GameManager> {
             -3, 
             road.currentBlock.transform.localPosition.z);
         cf.StartFollow(road.GetFollowPoint());
-        if (isPerfect) {
-            gameUI.AddScore(2);
-            SoundManager.Instance.PlayPerfect();
-        } else
-            gameUI.AddScore(1);
+
+        AddScore(perfectCount);
+
+        SoundManager.Instance.PlayLanded(perfectCount);
+    }
+
+    void AddScore(int perfectCount) {
+        int scoreAdd = (int)Mathf.Pow(2, perfectCount);
+        totalScore += scoreAdd;
+        gameUI.ShowScoreAddHud(scoreAdd);
+        gameUI.SetTotalScore(totalScore);
     }
 
 
@@ -103,6 +111,7 @@ public class GameManager : UnitySingleton<GameManager> {
     public void CheckGameOver() {
         if(gameStat == GameStat.Playing) {
             GameOver();
+            
         }
     }
 
@@ -110,6 +119,7 @@ public class GameManager : UnitySingleton<GameManager> {
     public void GameOver() {
         gameUI.FadeOut();
         gameOverUI.gameObject.SetActive(true);
+        gameOverUI.socre.text = totalScore.ToString();
         gameStat = GameStat.GameOver;
         GameOverAction?.Invoke();
     }

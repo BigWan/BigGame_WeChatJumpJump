@@ -65,7 +65,7 @@ public class Road : MonoBehaviour {
         b.spawnPoint = Vector3.zero;
         b.transform.localPosition = Vector3.zero;
         b.orientation = orientation;
-        blocksRef.Add(b);
+        AddBlock(b);
         SpawnNextBlock(false,false);
     }
 
@@ -93,7 +93,7 @@ public class Road : MonoBehaviour {
             b.last = blocksRef[blocksRef.Count - 1].next;
         }
 
-        blocksRef.Add(b);
+        AddBlock(b);
         currentBlock = b;
     }
 
@@ -105,5 +105,13 @@ public class Road : MonoBehaviour {
             return Vector3.zero;
     }
 
+
+    void AddBlock(Block b) {
+        blocksRef.Add(b);
+        while (blocksRef.Count >= 10) {
+            Destroy(blocksRef[0].gameObject);
+            blocksRef.RemoveAt(0);
+        }
+    }
 
 }

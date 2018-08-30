@@ -174,9 +174,8 @@ GameObject:
   - component: {fileID: 211777975}
   - component: {fileID: 211777978}
   - component: {fileID: 211777977}
-  - component: {fileID: 211777976}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ButtonText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,58 +199,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 334, y: 72}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &211777976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 211777974}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
-  m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
-    m_FadeDuration: 0.1
-  m_SpriteState:
-    m_HighlightedSprite: {fileID: 0}
-    m_PressedSprite: {fileID: 0}
-    m_DisabledSprite: {fileID: 0}
-  m_AnimationTriggers:
-    m_NormalTrigger: Normal
-    m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
-    m_DisabledTrigger: Disabled
-  m_Interactable: 1
-  m_TargetGraphic: {fileID: 211777977}
-  m_OnClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 498363847}
-        m_MethodName: StartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &211777977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,6 +451,8 @@ MonoBehaviour:
   appStart: {fileID: 8300000, guid: 86028ecefb1909043b9ee2d381ae2d78, type: 3}
   gameStart: {fileID: 8300000, guid: aae77e9bb1a3fa747a411ee6fcfa115d, type: 3}
   comboSounds:
+  - {fileID: 8300000, guid: b73e8255b4327264cbf65636c16458ca, type: 3}
+  - {fileID: 8300000, guid: 67d058c766cafab48a1ca9bd56b6dc71, type: 3}
   - {fileID: 8300000, guid: b9b108785977c054286df86f64187cfa, type: 3}
   - {fileID: 8300000, guid: 65ad130fa121eaa45bfb0ce3bc732b8b, type: 3}
   - {fileID: 8300000, guid: 24fca71963bda3141b8e7324175fa62f, type: 3}
@@ -511,7 +460,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1ade2e832f3f4584c845b673ebb0a306, type: 3}
   - {fileID: 8300000, guid: 65ff58dc18aa2424bbd4aafc8eb2610a, type: 3}
   - {fileID: 8300000, guid: 5ff6bed2b080d6345ba271b4f34f5dbb, type: 3}
-  - {fileID: 8300000, guid: 8c53f6aefb7209e46bc6daf02d59489e, type: 3}
   failSounds:
   - {fileID: 8300000, guid: 48e2020d458c29c498c6600e2bf8e118, type: 3}
   - {fileID: 8300000, guid: f1114151430828f429cf50cf65791436, type: 3}
@@ -767,7 +715,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &416986999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -911,6 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ad627011c211974da0411f23d4dbecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  socre: {fileID: 1418704020}
 --- !u!114 &433368309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1181,6 +1130,7 @@ MonoBehaviour:
   mainUI: {fileID: 1762274728}
   gameOverUI: {fileID: 433368308}
   cf: {fileID: 1513010520}
+  totalScore: 0
 --- !u!4 &498363848
 Transform:
   m_ObjectHideFlags: 0
@@ -1425,8 +1375,9 @@ GameObject:
   - component: {fileID: 795431168}
   - component: {fileID: 795431170}
   - component: {fileID: 795431169}
+  - component: {fileID: 795431171}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1485,6 +1436,58 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 795431167}
   m_CullTransparentMesh: 0
+--- !u!114 &795431171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 795431167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 211777977}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 498363847}
+        m_MethodName: StartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &839490369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,6 +2340,7 @@ MonoBehaviour:
   jumpSpeed: 20
   jumpHeight: 5
   enterHeight: 20
+  perfercDistance: 0.25
   jumpCurve:
     serializedVersion: 2
     m_Curve:
@@ -2425,7 +2429,7 @@ MonoBehaviour:
   maxPressRatio: 0.5
   jumpTime: 1
   body: {fileID: 553814559}
-  totalScore: 0
+  perfectCount: 0
   standBlock: {fileID: 0}
   oldStandBlock: {fileID: 0}
 --- !u!1 &1735265581
@@ -2600,7 +2604,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1762274728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,7 +2616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edfaa1218b62be4f8ca3196a4c11014, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  btnStartGame: {fileID: 211777976}
+  btnStartGame: {fileID: 0}
 --- !u!114 &1762274729
 MonoBehaviour:
   m_ObjectHideFlags: 0

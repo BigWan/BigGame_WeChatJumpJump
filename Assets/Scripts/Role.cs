@@ -19,6 +19,8 @@ public class Role : MonoBehaviour {
 
     public float enterHeight = 20f;
 
+    public float perfercDistance = 0.25f;
+
     /// <summary>
     /// 跳跃的曲线控制(抛物线)
     /// </summary>
@@ -41,8 +43,8 @@ public class Role : MonoBehaviour {
 
 
     [Header("Runtime Info")]
-    public int totalScore = 0;
-
+   
+    public int perfectCount = 0;
     private float pressRatio = 1f;
 
     private bool isJumping;
@@ -50,10 +52,12 @@ public class Role : MonoBehaviour {
 
     private bool isPerfect;
 
+    private bool isRreadJump;
+
     public Block standBlock;
     public Block oldStandBlock;
 
-    public UnityAction<bool> ChangeBlockAction;
+    public UnityAction<int> ChangeBlockAction;
 
     private bool pressing;
     private float pressTime;
@@ -65,9 +69,11 @@ public class Role : MonoBehaviour {
 
     public void RoleReset() {
         jumpPuff.SetActive(false);
-        totalScore = 0;
+        
+        perfectCount = 0;
         pressRatio = 1f;
         isJumping = false;
+        isRreadJump = false;
         isStandOnBlock = false;
         standBlock = null;
         oldStandBlock = null;
@@ -83,11 +89,23 @@ public class Role : MonoBehaviour {
 
     public void StartJump(Vector3 distance) {
         StartCoroutine(JumpCoroutine(distance));
+        StartCoroutine(RatioRecover());
+        if (standBlock != null)
+            standBlock.StartRecover();
+    }
+
+    public IEnumerator RatioRecover() {
+        for (int i = 0; i < 30; i++) {
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, 0.25f);
+            
+            yield return null;
+        }
     }
 
     public IEnumerator JumpCoroutine(Vector3 offset) {
         isJumping = true;
         jumpPuff.SetActive(true);
+        isStandOnBlock = false;
         Vector3 step = offset / 30f;
         for (int i = 0; i < 30; i++) {
             transform.localPosition += step;
@@ -113,41 +131,39 @@ public class Role : MonoBehaviour {
     private void Update() {
         if (GameManager.Instance.gameStat != GameManager.GameStat.Playing)
             return;
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            pressing = true;
-            pressTime = 0f;
+        if (Input.GetKeyDown(KeyCode.Space)) {      
+            if(isRreadJump&&isStandOnBlock && !isJumping) {
+                pressing = true;
+                pressTime = 0f;
+                SoundManager.Instance.PlaySnapSound();
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.Space)) {
+            if (!pressing) return;
             pressing = false;
-            if (!isJumping&&isStandOnBlock) {
+            if (isRreadJump&&!isJumping && isStandOnBlock) {
+                SoundManager.Instance.Stop();
                 JumpByPressTime();
             }
+            
         }
 
-        if (pressing) {
+        if (pressing && isStandOnBlock && !isJumping) {
             pressTime += Time.deltaTime;
             pressRatio = calcPressRatio(pressTime);
-
+            transform.localScale = new Vector3(1, pressRatio, 1);
             if (standBlock != null) {
-                float standy = standBlock.perfect.transform.position.y;
-                transform.localPosition = new Vector3(transform.localPosition.x, standy, transform.localPosition.z);
+                standBlock.transform.localScale = new Vector3(1, pressRatio, 1);
             }
-        } else {
-            pressRatio = 1f;
-        }
+            if (pressTime >= 2.22f) SoundManager.Instance.PlaySnapLoop();
 
-        transform.localScale = new Vector3(1, pressRatio, 1);
-        if (standBlock != null) {
-            standBlock.transform.localScale = new Vector3(1, pressRatio, 1);
-        }
-
+        } 
 
     }
 
 
     private void JumpByPressTime() {
-
         float jumpLength = pressTime * jumpSpeed;
         Vector3 offset = Vector3.zero;
 
@@ -187,6 +203,8 @@ public class Role : MonoBehaviour {
             time += Time.deltaTime;
             yield return null;
         }
+
+        isRreadJump = true;
     }
 
 
@@ -196,15 +214,20 @@ public class Role : MonoBehaviour {
 
 
     private void OnCollisionEnter(Collision collision) {
-        //if (collision.transform.CompareTag("Block")) {
-        //    oldStandBlock = standBlock;
-        //    standBlock = collision.transform.GetComponent<Block>();
+        if (collision.transform.CompareTag("Block")) {
+            isStandOnBlock = true;
+            oldStandBlock = standBlock;
+            standBlock = collision.transform.GetComponent<Block>();
 
-        //    if (standBlock == null)
-        //        standBlock = collision.transform.GetComponentInParent<Block>();
+            if (standBlock == null)
+                standBlock = collision.transform.GetComponentInParent<Block>();
 
-
-        //}
+            if (oldStandBlock != standBlock && oldStandBlock != null && standBlock != null) {
+                isPerfect = (transform.position - standBlock.perfect.transform.position).magnitude < perfercDistance;
+                perfectCount = isPerfect? perfectCount+1:0;
+                ChangeBlockAction?.Invoke(perfectCount);
+            }
+        }
 
         if (collision.transform.CompareTag("Plane")) {
             GameManager.Instance.CheckGameOver();
@@ -212,15 +235,16 @@ public class Role : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-        if (other.CompareTag("Block")) {
-            oldStandBlock = standBlock;
-            standBlock = other.GetComponent<Block>();
-            if(standBlock==null)
-                standBlock = other.GetComponentInParent<Block>();
-            if (oldStandBlock != standBlock && oldStandBlock != null && standBlock != null) {
-                ChangeBlockAction?.Invoke(isPerfect);
-            }
-        }
+        //if (other.CompareTag("Block")) {
+        //    isStandOnBlock = true;
+        //    oldStandBlock = standBlock;
+        //    standBlock = other.GetComponent<Block>();
+        //    if(standBlock==null)
+        //        standBlock = other.GetComponentInParent<Block>();
+        //    if (oldStandBlock != standBlock && oldStandBlock != null && standBlock != null) {
+        //        ChangeBlockAction?.Invoke(isPerfect);
+        //    }
+        //}
 
 
         if (other.CompareTag("BlockPerfect")) {
@@ -229,20 +253,13 @@ public class Role : MonoBehaviour {
     }
 
 
-    private void OnTriggerStay(Collider other) {
-        if (other.CompareTag("Block")) {
-            isStandOnBlock = true;
-        }
-    }
 
 
 
 
-    private void OnTriggerExit(Collider other) {
-        if (other.CompareTag("BlockPerfect")) 
-            isPerfect = false;
-        if (other.CompareTag("Block")) {
-            isStandOnBlock = false;
-        }
-    }
+
+    //private void OnTriggerExit(Collider other) {
+    //    if (other.CompareTag("BlockPerfect"))
+    //        isPerfect = false;
+    //}
 }
