@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1851916692051548}
+  m_IsPrefabAsset: 1
+--- !u!1 &1851916692051548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4300223005046190}
+  - component: {fileID: 114485105489318766}
+  m_Layer: 0
+  m_Name: Road
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4300223005046190
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1851916692051548}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114485105489318766
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1851916692051548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4de0011641b4b3d498d9032f76a17cb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockPrefabs:
+  - {fileID: 114945488784681556, guid: 2990f9005c8b1824d8f3d4308fcc3dcd, type: 2}
+  - {fileID: 114479191542517260, guid: ec3736ca51d081648b68c68f31fd6140, type: 2}
+  - {fileID: 114867889339727096, guid: ca7c0410b0498944386282a8b8572025, type: 2}
+  - {fileID: 114231743945566436, guid: 5d2419649964ec343b4aa8b3c883e247, type: 2}
+  - {fileID: 114078227691867732, guid: 87b6b52309782f6419242995f76d0bee, type: 2}
+  - {fileID: 114554507855480604, guid: d4c09d1eb1dd4b94db1a56f28b12320b, type: 2}
+  minDistance: 5
+  maxDistance: 12
+  currentBlock: {fileID: 0}
+  orientation: 0
+  blocksRef: []
