@@ -17,6 +17,7 @@ public class GameManager : UnitySingleton<GameManager> {
     public Road road;
     public Role role;
 
+    public bool isAutoPlay;
 
     public Transform plane;
 
@@ -78,7 +79,7 @@ public class GameManager : UnitySingleton<GameManager> {
             -3, 
             road.currentBlock.transform.localPosition.z);
         cf.StartFollow(road.GetFollowPoint());
-        int scoreAdd = (int)Mathf.Pow(2, perfectCount);
+        int scoreAdd = Mathf.Min( (int)Mathf.Pow(2, perfectCount),256);
         AddScore(scoreAdd);
 
         SoundManager.Instance.PlayLanded(perfectCount);
@@ -92,7 +93,8 @@ public class GameManager : UnitySingleton<GameManager> {
 
 
 
-    public void StartGame() {
+    public void StartGame(bool autoGame) {
+        isAutoPlay = autoGame;
         if (gameStat != GameStat.Loaded) return;
         mainUI.FadeOut();
         gameUI.FadeIn();
@@ -128,5 +130,13 @@ public class GameManager : UnitySingleton<GameManager> {
         get {
             return role.standBlock;
         }
+    }
+
+    /// <summary>
+    /// 最佳跳跃距离
+    /// </summary>
+    /// <returns></returns>
+    public Vector3 PerfectJumpVector() {
+        return road.currentBlock.perfect.position - role.transform.position;
     }
 }

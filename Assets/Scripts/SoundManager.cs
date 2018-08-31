@@ -66,12 +66,13 @@ public class SoundManager : UnitySingleton<SoundManager> {
 
 
     public void PlayLanded(int perfectCount) {
-        int clipIndex = 0;
-        if (perfectCount > comboSounds.Length)
-            clipIndex = comboSounds.Length - 1;
-        else
-            clipIndex = perfectCount;
-        audioPlayer.clip = comboSounds[clipIndex];
+        perfectCount = Mathf.Clamp(perfectCount, 1, 9);
+        //int clipIndex = 0;
+        //if (perfectCount >= comboSounds.Length)
+        //    clipIndex = comboSounds.Length - 1;
+        //else
+        //    clipIndex = perfectCount;
+        audioPlayer.clip = comboSounds[perfectCount-1];
         audioPlayer.Play();
     }
 
