@@ -78,14 +78,13 @@ public class GameManager : UnitySingleton<GameManager> {
             -3, 
             road.currentBlock.transform.localPosition.z);
         cf.StartFollow(road.GetFollowPoint());
-
-        AddScore(perfectCount);
+        int scoreAdd = (int)Mathf.Pow(2, perfectCount);
+        AddScore(scoreAdd);
 
         SoundManager.Instance.PlayLanded(perfectCount);
     }
 
-    void AddScore(int perfectCount) {
-        int scoreAdd = (int)Mathf.Pow(2, perfectCount);
+    public void AddScore(int scoreAdd) {
         totalScore += scoreAdd;
         gameUI.ShowScoreAddHud(scoreAdd);
         gameUI.SetTotalScore(totalScore);

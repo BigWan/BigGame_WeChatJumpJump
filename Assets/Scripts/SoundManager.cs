@@ -24,6 +24,9 @@ public class SoundManager : UnitySingleton<SoundManager> {
     public AudioClip pressSound;
     public AudioClip pressLoop;
 
+
+    public AudioClip blockFalldown;
+
     private void Awake() {
 
         if (Instance != this) {
@@ -55,9 +58,12 @@ public class SoundManager : UnitySingleton<SoundManager> {
         Instance.PlayFail();
     }
 
-    public void PlayCombine(int combineID) {
-
+    public void PlayBlockFallDown() {
+        audioPlayer.clip = blockFalldown;
+        audioPlayer.loop = false;
+        audioPlayer.Play();
     }
+
 
     public void PlayLanded(int perfectCount) {
         int clipIndex = 0;

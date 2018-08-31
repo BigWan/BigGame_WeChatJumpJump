@@ -45,6 +45,8 @@ public class Block : MonoBehaviour {
 
     IEnumerator FallCoroutine(Vector3 target,Vector3 offset, AnimationCurve fallCurve) {
 
+        SoundManager.Instance.PlayBlockFallDown();
+
         transform.localPosition = target + offset;
         float time = 0;
         while (time <= fallTime) {

@@ -466,6 +466,7 @@ MonoBehaviour:
   perfectSound: {fileID: 8300000, guid: 67d058c766cafab48a1ca9bd56b6dc71, type: 3}
   pressSound: {fileID: 8300000, guid: 96e45e330a9973f4c95e8aee6bc7d3cf, type: 3}
   pressLoop: {fileID: 8300000, guid: 9999002463836064d94376e825b335e8, type: 3}
+  blockFalldown: {fileID: 8300000, guid: b599800d006230644aac3d136ab0f71e, type: 3}
 --- !u!4 &355648911
 Transform:
   m_ObjectHideFlags: 0
@@ -995,7 +996,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b453148dd41415e4e8b0f16ffb619895, type: 3}
     m_FontSize: 14
     m_FontStyle: 1
     m_BestFit: 1
@@ -1525,7 +1526,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b453148dd41415e4e8b0f16ffb619895, type: 3}
     m_FontSize: 150
     m_FontStyle: 1
     m_BestFit: 0
@@ -1923,11 +1924,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 4300223005046190, guid: d6e912c9cd9fff440ac640fafdc20a27, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1959,161 +1955,6 @@ Prefab:
     - target: {fileID: 4300223005046190, guid: d6e912c9cd9fff440ac640fafdc20a27, type: 2}
       propertyPath: m_RootOrder
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockSpawnHeight
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[1].time
-      value: 0.507513
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[1].value
-      value: 0.2298259
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[1].inSlope
-      value: -4.265315
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[1].outSlope
-      value: -4.265315
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[1].inWeight
-      value: 0.063223995
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[1].outWeight
-      value: 0.021236021
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[2].time
-      value: 0.5261647
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[2].value
-      value: 0.008483836
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[2].inSlope
-      value: 5.0376797
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[2].outSlope
-      value: 5.0376797
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[2].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[2].outWeight
-      value: 0.07621674
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[3].time
-      value: 0.77093536
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[3].value
-      value: 0.021060266
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[3].inSlope
-      value: 1.5174537
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[3].outSlope
-      value: 1.5174537
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[3].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[3].outWeight
-      value: 0.54894155
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[4].time
-      value: 0.8903804
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[4].value
-      value: 0.059086844
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[4].inSlope
-      value: 0.06055252
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[4].outSlope
-      value: 0.06055252
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[4].inWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[4].outWeight
-      value: 0.33333334
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[5].time
-      value: 0.99542236
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[5].value
-      value: -0.0033950806
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[5].inSlope
-      value: -0.943551
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[5].outSlope
-      value: -0.943551
-      objectReference: {fileID: 0}
-    - target: {fileID: 114485105489318766, guid: d6e912c9cd9fff440ac640fafdc20a27,
-        type: 2}
-      propertyPath: blockFallCurve.m_Curve.Array.data[5].inWeight
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d6e912c9cd9fff440ac640fafdc20a27, type: 2}
@@ -2173,7 +2014,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: b453148dd41415e4e8b0f16ffb619895, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 1

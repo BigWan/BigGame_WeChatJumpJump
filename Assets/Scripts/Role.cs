@@ -131,16 +131,18 @@ public class Role : MonoBehaviour {
     private void Update() {
         if (GameManager.Instance.gameStat != GameManager.GameStat.Playing)
             return;
-        if (Input.GetKeyDown(KeyCode.Space)) {      
-            if(isRreadJump&&isStandOnBlock && !isJumping) {
+        //if (Input.GetKeyDown(KeyCode.Space)) {      
+        if (Input.GetMouseButtonDown(0)) {
+                if (isRreadJump&&isStandOnBlock && !isJumping) {
                 pressing = true;
                 pressTime = 0f;
                 SoundManager.Instance.PlaySnapSound();
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space)) {
-            if (!pressing) return;
+        //if (Input.GetKeyUp(KeyCode.Space)) {
+        if (Input.GetMouseButtonUp(0)) {
+                if (!pressing) return;
             pressing = false;
             if (isRreadJump&&!isJumping && isStandOnBlock) {
                 SoundManager.Instance.Stop();

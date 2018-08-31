@@ -54,12 +54,77 @@ MonoBehaviour:
   blockPrefabs:
   - {fileID: 114945488784681556, guid: 2990f9005c8b1824d8f3d4308fcc3dcd, type: 2}
   - {fileID: 114479191542517260, guid: ec3736ca51d081648b68c68f31fd6140, type: 2}
-  - {fileID: 114867889339727096, guid: ca7c0410b0498944386282a8b8572025, type: 2}
+  - {fileID: 114830939474766504, guid: ca7c0410b0498944386282a8b8572025, type: 2}
   - {fileID: 114231743945566436, guid: 5d2419649964ec343b4aa8b3c883e247, type: 2}
   - {fileID: 114078227691867732, guid: 87b6b52309782f6419242995f76d0bee, type: 2}
   - {fileID: 114554507855480604, guid: d4c09d1eb1dd4b94db1a56f28b12320b, type: 2}
+  - {fileID: 114853382034027846, guid: ae4d381b91ca7e6449d5f5ee82f25525, type: 2}
+  - {fileID: 114075675606412102, guid: cb0ccd154524b66498362ecca4bd14cc, type: 2}
+  - {fileID: 114853382034027846, guid: 7cc042fc6b84d4c4ab823c48b96a2a26, type: 2}
+  - {fileID: 114703666701846586, guid: 765d2ea3133c35f4d904b3d9c6aac4eb, type: 2}
   minDistance: 5
   maxDistance: 12
+  blockSpawnHeight: 10
+  blockFallCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.507513
+      value: 0.2298259
+      inSlope: -4.265315
+      outSlope: -4.265315
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.063223995
+      outWeight: 0.021236021
+    - serializedVersion: 3
+      time: 0.5261647
+      value: 0.008483836
+      inSlope: 5.0376797
+      outSlope: 5.0376797
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.07621674
+    - serializedVersion: 3
+      time: 0.77093536
+      value: 0.021060266
+      inSlope: 1.5174537
+      outSlope: 1.5174537
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.54894155
+    - serializedVersion: 3
+      time: 0.8903804
+      value: 0.059086844
+      inSlope: 0.06055252
+      outSlope: 0.06055252
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.99542236
+      value: -0.0033950806
+      inSlope: -0.943551
+      outSlope: -0.943551
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 1
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   currentBlock: {fileID: 0}
   orientation: 0
   blocksRef: []
