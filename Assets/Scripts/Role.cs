@@ -176,6 +176,7 @@ public class Role : MonoBehaviour {
         if (GameManager.Instance.gameStat != GameManager.GameStat.Playing)
             return;
         if (!GameManager.Instance.isAutoPlay) {
+            if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) return;
             if (Input.GetMouseButtonDown(0)) StartPress();
             if (Input.GetMouseButtonUp(0)) EndPress();
         }

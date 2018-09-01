@@ -111,8 +111,7 @@ public class GameManager : UnitySingleton<GameManager> {
 
     public void CheckGameOver() {
         if(gameStat == GameStat.Playing) {
-            GameOver();
-            
+            GameOver();            
         }
     }
 
@@ -131,6 +130,15 @@ public class GameManager : UnitySingleton<GameManager> {
             return role.standBlock;
         }
     }
+
+    public void PauseGame() {
+        if (Mathf.Approximately(Time.timeScale, 0)) {
+            Time.timeScale = 1;
+        } else {
+            Time.timeScale = 0;
+        }
+    }
+
 
     /// <summary>
     /// 最佳跳跃距离

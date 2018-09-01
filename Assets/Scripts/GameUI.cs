@@ -9,6 +9,10 @@ public class GameUI : UIBase {
 
     public Text scoreHud;
 
+
+    public Button pauseButton;
+    public Button endGameButton;
+
     public void IniUI() {
         SetScore(0);
         scoreHud.gameObject.SetActive(false);
@@ -42,6 +46,20 @@ public class GameUI : UIBase {
             yield return null;
         }
         scoreHud.gameObject.SetActive(false);
+    }
+
+
+    public void PauseGame() {
+        GameManager.Instance.PauseGame();
+        if (Mathf.Approximately(Time.timeScale, 0)) {
+            pauseButton.GetComponent<PauseButton>().SetPlay();
+        } else {
+            pauseButton.GetComponent<PauseButton>().SetPause();
+        }
+    }
+
+    public void EndGame() {
+
     }
 
 }
