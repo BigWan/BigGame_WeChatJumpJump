@@ -803,6 +803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09132b01b1926864f966c4c169e193c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreFadeTime: 0.6
   scoreText: {fileID: 839490370}
   scoreHud: {fileID: 447774280}
   pauseButton: {fileID: 449262286}
@@ -1705,6 +1706,34 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &797893426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 797893427}
+  m_Layer: 0
+  m_Name: ScorePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &797893427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 797893426}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.25, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2142460809}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &839490369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1773,7 @@ MonoBehaviour:
   m_FontData:
     m_Font: {fileID: 12800000, guid: b453148dd41415e4e8b0f16ffb619895, type: 3}
     m_FontSize: 150
-    m_FontStyle: 1
+    m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 300
@@ -2647,7 +2676,8 @@ MonoBehaviour:
     m_RotationOrder: 4
   jumpPuff: {fileID: 172147455}
   maxPressRatio: 0.5
-  jumpTime: 1
+  jumpTime: 0.5
+  scorePoint: {fileID: 797893427}
   body: {fileID: 553814559}
   perfectCount: 0
   standBlock: {fileID: 0}
@@ -3384,6 +3414,7 @@ Transform:
   m_Children:
   - {fileID: 553814559}
   - {fileID: 172147456}
+  - {fileID: 797893427}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

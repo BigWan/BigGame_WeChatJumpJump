@@ -5,13 +5,17 @@ using UnityEngine.UI;
 
 public class GameUI : UIBase {
 
+    public float scoreFadeTime = 0.4f;
+
+    [Header("Components Refs")]
     public Text scoreText;
 
     public Text scoreHud;
 
-
     public Button pauseButton;
     public Button endGameButton;
+
+
 
     public void IniUI() {
         SetScore(0);
@@ -40,11 +44,17 @@ public class GameUI : UIBase {
 
     IEnumerator AddScoreCoroutine() {
         scoreHud.gameObject.SetActive(true);
-        scoreHud.rectTransform.position = Camera.main.WorldToScreenPoint(GameManager.Instance.standBlock.spawnPoint);
-        for (int i = 0; i < 30; i++) {
-            scoreHud.rectTransform.position = Camera.main.WorldToScreenPoint(GameManager.Instance.standBlock.spawnPoint) + Vector3.up*5f*i;
+        CanvasGroup cg = scoreHud.GetComponent<CanvasGroup>();
+        cg.alpha = 1f;
+        scoreHud.rectTransform.position = Camera.main.WorldToScreenPoint(GameManager.Instance.role.scorePoint.position);
+        float time = 0;
+        while (time <= scoreFadeTime) { 
+            scoreHud.rectTransform.position = Camera.main.WorldToScreenPoint(GameManager.Instance.role.scorePoint.position) + Vector3.up*300f*time;
+            time += Time.deltaTime;
+            cg.alpha = 1f - time/scoreFadeTime;
             yield return null;
         }
+        cg.alpha = 0;        
         scoreHud.gameObject.SetActive(false);
     }
 

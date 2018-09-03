@@ -21,13 +21,14 @@ public class Role : MonoBehaviour {
 
     public float perfercDistance = 0.5f;
 
+
+
     /// <summary>
     /// 跳跃的曲线控制(抛物线)
     /// </summary>
     public AnimationCurve jumpCurve;
 
     public AnimationCurve enterCurve;
-
 
     public GameObject jumpPuff;
 
@@ -38,6 +39,7 @@ public class Role : MonoBehaviour {
 
     public float jumpTime = 1f;
 
+    public Transform scorePoint;
     public Transform body;
 
 
@@ -93,10 +95,12 @@ public class Role : MonoBehaviour {
             standBlock.StartRecover();
     }
 
+    private float ratioRecoverTime = 0.5f;
     public IEnumerator RatioRecover() {
-        for (int i = 0; i < 30; i++) {
+        float time = 0f;
+        while (time <= ratioRecoverTime) { 
             transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, 0.25f);
-            
+            time += Time.deltaTime;
             yield return null;
         }
     }
@@ -131,17 +135,23 @@ public class Role : MonoBehaviour {
         jumpPuff.SetActive(true);
         isStandOnBlock = false;
         Vector3 step = offset / 30f;
-        for (int i = 0; i < 30; i++) {
-            transform.localPosition += step;
+        float time = 0f;
+        Vector3 startPos = transform.localPosition;
+        //for (int i = 0; i < 30; i++) {
+        while (time <= jumpTime) { 
+            transform.localPosition = startPos+offset*time/jumpTime;
             transform.localPosition = new Vector3(
                 transform.localPosition.x,
-                jumpCurve.Evaluate(((float)i + 1f) / 30f) * jumpHeight,
+                jumpCurve.Evaluate(time/jumpTime) * jumpHeight,
                 transform.localPosition.z
                 );
 
-            body.eulerAngles = new Vector3(-i * 12 - 12, 0, 0);
+            body.eulerAngles = new Vector3(time/jumpTime*360f, 0, 0);
+            time += Time.deltaTime;
             yield return new WaitForFixedUpdate();
         }
+        transform.localPosition = startPos + offset;
+        body.eulerAngles = new Vector3(0, 0, 0);
         jumpPuff.SetActive(false);
         isJumping = false;
     }

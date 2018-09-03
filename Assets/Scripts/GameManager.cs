@@ -79,7 +79,8 @@ public class GameManager : UnitySingleton<GameManager> {
             -3, 
             road.currentBlock.transform.localPosition.z);
         cf.StartFollow(road.GetFollowPoint());
-        int scoreAdd = Mathf.Min( (int)Mathf.Pow(2, perfectCount),256);
+        perfectCount = Mathf.Clamp(perfectCount,0, 8);
+        int scoreAdd = (int)Mathf.Pow(2, perfectCount);
         AddScore(scoreAdd);
 
         SoundManager.Instance.PlayLanded(perfectCount);
